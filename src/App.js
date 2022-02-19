@@ -1,23 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+
+import {useRef} from "react";
+import Test from "./Test";
 
 function App() {
+  const show = useRef()
+  const formData = (value) => {
+    show.current(value)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{marginTop: "1em", textAlign : "center"}}>
+       <button onClick={(event) => { event.preventDefault(); event.stopPropagation(); formData("Form Test") }}> Show form </button>
+       <button onClick={(event) => { event.preventDefault(); event.stopPropagation(); formData("") }} style={{marginLeft: "1em"}}> Hide form </button> 
+       <Test show={show}/>
     </div>
   );
 }
